@@ -44,7 +44,12 @@ const sortedProjects = projects.sort((a, b) => {
                 {data.title}
               </h2>
               <p class="mt-0.5 text-slate-600">{data.description}</p>
-              <a href={data.url} class="absolute inset-0">
+              <a
+                href={data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute inset-0"
+              >
                 <span class="sr-only">View {data.title} project</span>
               </a>
             </li>
