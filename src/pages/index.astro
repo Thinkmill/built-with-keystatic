@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import { Img } from "astro-imagetools/components";
+
+import Layout from "../layouts/Layout.astro";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => {
+  return a.data.sortIndex - b.data.sortIndex;
+});
+---
+
+<Layout title="Keystatic & Astro's Content Collections">
+  <div class="mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-md mx-auto">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">
+        Built with Keystatic
+      </h1>
+      <p class="mt-2 md:mt-4 text-slate-600 md:text-lg">
+        A collection of projects using Keystatic to manage parts of their
+        codebase.
+      </p>
+    </div>
+
+    <ul
+      class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
+    >
+      {
+        sortedProjects.map(({ data }) => {
+          return (
+            <li class="relative group">
+              <Img
+                src={data.image}
+                alt=""
+                attributes={{
+                  img: {
+                    class: "rounded-lg",
+                  },
+                }}
+              />
+              <h2 class="mt-4 xl:text-lg font-semibold group-hover:underline">
+                {data.title}
+              </h2>
+              <p class="mt-0.5 text-slate-600">{data.description}</p>
+              <a href={data.url} class="absolute inset-0">
+                <span class="sr-only">View {data.title} project</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</Layout>
