@@ -1,17 +1,17 @@
 import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
-import { astroImageTools } from "astro-imagetools";
 import markdoc from "@astrojs/markdoc";
 import vercel from "@astrojs/vercel/serverless";
+
+// Grabbing the SITE_URL from the environment variables 
+// (used for SEO metatags base path)
 const {
   SITE_URL
 } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
-
-// https://astro.build/config
 export default defineConfig({
-  integrations: [react(), markdoc(), astroImageTools],
+  integrations: [react(), markdoc()],
   output: "hybrid",
   experimental: {
     assets: true

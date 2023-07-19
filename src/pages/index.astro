@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Img } from "astro-imagetools/components";
+import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 
@@ -28,17 +28,15 @@ const sortedProjects = projects.sort((a, b) => {
       class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
-        sortedProjects.map(({ data }) => {
+        sortedProjects.map(({ slug, data }) => {
           return (
             <li class="relative group">
-              <Img
-                src={data.image}
+              <Image
+                src={`src/assets/projects/${slug}/${data.image}`}
                 alt=""
-                attributes={{
-                  img: {
-                    class: "rounded-lg",
-                  },
-                }}
+                class="rounded-lg"
+                width={1280}
+                height={720}
               />
               <h2 class="mt-4 xl:text-lg font-semibold group-hover:underline">
                 {data.title}
