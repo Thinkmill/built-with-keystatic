@@ -1,6 +1,6 @@
 {
-  "name": "@keystatic/templates-astro",
-  "version": "0.0.3",
+  "name": "built-with-keystatic",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
@@ -17,7 +17,7 @@
     "@keystatic/core": "^0.0.111",
     "@types/react": "^18.2.8",
     "@types/react-dom": "^18.0.11",
-    "astro": "^2.8.3",
+    "astro": "^2.8.2",
     "prettier-plugin-astro": "^0.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
