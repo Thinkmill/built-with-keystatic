@@ -1,7 +1,3 @@
----
-const seoImage = Astro.url.origin + "/seo-image.png";
----
-
 <meta
   name="robots"
   content={import.meta.env.MODE === "production"
@@ -20,9 +16,9 @@ const seoImage = Astro.url.origin + "/seo-image.png";
   content="A collection of projects using Keystatic to manage parts of their codebase."
 />
 <meta property="og:type" content="website" />
-<meta property="og:image" content={seoImage} />
-<meta property="og:url" content={Astro.site} />
-<meta property="og:image:url" content={seoImage} />
+<meta property="og:image" content={`${Astro.url.origin}/seo-image.png`} />
+<meta property="og:url" content={Astro.url.origin} />
+<meta property="og:image:url" content={`${Astro.url.origin}/seo-image.png`} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="1200" />
 <meta property="og:image:alt" content="Built with Keystatic" />
@@ -36,4 +32,4 @@ const seoImage = Astro.url.origin + "/seo-image.png";
   name="twitter:description"
   content="A collection of projects using Keystatic to manage parts of their codebase."
 />
-<meta name="twitter:image" content={seoImage} />
+<meta name="twitter:image" content={`${Astro.url.origin}/seo-image.png`} />
