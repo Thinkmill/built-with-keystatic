@@ -2,41 +2,38 @@
 const seoImage = `${Astro.site}seo-image.png`;
 ---
 
-<>
-  {
-    Astro.site?.origin === "https://builtwith.keystatic.com" ? (
-      <meta content="index, follow" name="robots" />
-    ) : (
-      <meta content="noindex, nofollow" name="robots" />
-    )
-  }
-  <meta
-    content="A collection of projects using Keystatic to manage parts of their codebase."
-    name="description"
-  />
-  <meta content="Built With Keystatic " property="og:title" />
-  <meta content="website" property="og:type" /><meta
-    content={seoImage}
-    property="og:image"
-  />
-  <meta
-    content={`${Astro.site}" property="og:url" /`}
-    <meta
-    content="A collection of projects using Keystatic to manage parts of their codebase."
-    property="og:description"
-  />
-  <meta content={seoImage} property="og:image:url" />
-  <meta content="1200" property="og:image:width" />
-  <meta content="1200" property="og:image:height" />
-  <meta content="Built with Keystatic" property="og:image:alt" />
+<meta
+  name="robots"
+  content={import.meta.env.MODE === "production"
+    ? "index, follow"
+    : "noindex, nofollow"}
+/>
+<meta
+  name="description"
+  content="A collection of projects using Keystatic to manage parts of their codebase."
+/>
 
-  <meta content="summary_large_image" name="twitter:card" />
-  <meta content="@thekeystatic" name="twitter:site" />
-  <meta content="@thekeystatic" name="twitter:creator" />
-  <meta content="Keystatic" name="twitter:title" />
-  <meta
-    content="A collection of projects using Keystatic to manage parts of their codebase."
-    name="twitter:description"
-  />
-  <meta content={seoImage} name="twitter:image" />
-</>
+<!-- OG tags -->
+<meta property="og:title" content="Built With Keystatic" />
+<meta
+  property="og:description"
+  content="A collection of projects using Keystatic to manage parts of their codebase."
+/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content={seoImage} />
+<meta property="og:url" content={Astro.site} />
+<meta property="og:image:url" content={seoImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
+<meta property="og:image:alt" content="Built with Keystatic" />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@thekeystatic" />
+<meta name="twitter:creator" content="@thekeystatic" />
+<meta name="twitter:title" content="Keystatic" />
+<meta
+  name="twitter:description"
+  content="A collection of projects using Keystatic to manage parts of their codebase."
+/>
+<meta name="twitter:image" content={seoImage} />
