@@ -6,9 +6,6 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [react(), markdoc()],
   output: "hybrid",
-  experimental: {
-    assets: true,
-  },
   site: "https://builtwith.keystatic.com",
   adapter: vercel(),
 });

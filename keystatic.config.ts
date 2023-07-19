@@ -18,7 +18,8 @@ export default config({
         image: fields.image({
           label: "Image",
           validation: { isRequired: true },
-          directory: "src/assets/projects",
+          directory: "public/images/projects",
+          publicPath: "/images/projects",
         }),
         sortIndex: fields.integer({ label: "Sort Index", defaultValue: 100 }),
       },
