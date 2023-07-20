@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 
@@ -28,16 +28,31 @@ const sortedProjects = projects.sort((a, b) => {
       class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
-        sortedProjects.map(({ data }, index) => {
+        sortedProjects.map(async ({ data }, index) => {
+          const arr = [
+            { width: 373, height: 231 },
+            { width: 560, height: 348 },
+            { width: 746, height: 464 },
+          ].map((el) => {
+            return getImage({
+              src: data.image,
+              format: "webp",
+              width: el.width,
+              quality: 100,
+              height: el.height,
+            });
+          });
+          const [low, medium, high] = await Promise.all(arr);
           return (
             <li class="relative group">
               <div class="aspect-[16/10] relative">
-                <Image
-                  src={data.image}
+                <img
+                  srcset={`${low.src},
+               ${medium.src} 1.5x,
+               ${high.src} 2x`}
+                  class="rounded-lg absolute inset-0 object-cover w-full"
+                  src={high.src}
                   alt=""
-                  class="rounded-lg absolute inset-0 object-cover"
-                  width={373 * 2}
-                  height={232 * 2}
                   loading={index < 6 ? "eager" : "lazy"}
                 />
               </div>
