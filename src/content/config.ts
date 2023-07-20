@@ -5,8 +5,8 @@ const projectsCollection = defineCollection({
     z.object({
       title: z.string(),
       url: z.string(),
-      image: image(),
-      description: z.string(),
+      coverImage: image(),
+      summary: z.string(),
       sortIndex: z.number(),
     }),
 });
