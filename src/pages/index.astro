@@ -28,7 +28,7 @@ const sortedProjects = projects.sort((a, b) => {
       class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
-        sortedProjects.map(({ data }) => {
+        sortedProjects.map(({ data }, index) => {
           return (
             <li class="relative group">
               <div class="aspect-[16/10] relative">
@@ -38,6 +38,7 @@ const sortedProjects = projects.sort((a, b) => {
                   class="rounded-lg absolute inset-0 object-cover"
                   width={373}
                   height={232}
+                  loading={index < 6 ? "eager" : "lazy"}
                 />
               </div>
               <h2 class="mt-4 xl:text-lg font-semibold group-hover:underline">
