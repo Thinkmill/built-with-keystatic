@@ -28,16 +28,18 @@ const sortedProjects = projects.sort((a, b) => {
       class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
-        sortedProjects.map(({ slug, data }) => {
+        sortedProjects.map(({ data }) => {
           return (
             <li class="relative group">
-              <Image
-                src={data.image}
-                alt=""
-                class="rounded-lg"
-                width={640}
-                height={360}
-              />
+              <div class="aspect-[16/10] relative">
+                <Image
+                  src={data.image}
+                  alt=""
+                  class="rounded-lg absolute inset-0 object-cover"
+                  width={373}
+                  height={232}
+                />
+              </div>
               <h2 class="mt-4 xl:text-lg font-semibold group-hover:underline">
                 {data.title}
               </h2>
