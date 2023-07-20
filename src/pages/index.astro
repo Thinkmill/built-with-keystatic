@@ -50,7 +50,7 @@ const sortedProjects = projects.sort((a, b) => {
                   srcset={`${low.src},
                ${medium.src} 1.5x,
                ${high.src} 2x`}
-                  class="w-full"
+                  class="rounded-lg absolute inset-0 object-cover w-full"
                   src={high.src}
                   alt=""
                   loading={index < 6 ? "eager" : "lazy"}
