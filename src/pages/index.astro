@@ -33,15 +33,14 @@ const sortedProjects = projects.sort((a, b) => {
             { width: 373, height: 231 },
             { width: 560, height: 348 },
             { width: 746, height: 464 },
-          ].map(async (el) => {
-            const x = await getImage({
+          ].map((el) => {
+            return getImage({
               src: data.image,
               format: "jpg",
               width: el.width,
               quality: 100,
               height: el.height,
             });
-            return x;
           });
           const [low, medium, high] = await Promise.all(arr);
           return (
