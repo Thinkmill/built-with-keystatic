@@ -18,6 +18,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="canonical" href="https://keystatic.com/showcase" />
     <SeoTags />
   </head>
   <body>
@@ -27,7 +28,7 @@ const { title } = Astro.props;
       {
         "@context": "https://schema.org",
         "name": "Built with Keystatic",
-        "url": "https://builtwith.keystatic.com",
+        "url": "https://keystatic.com/showcase",
         "description": "A collection of projects using Keystatic to manage parts of their codebase.",
         "sameAs": ["https://twitter.com/thekeystatic", "https://keystatic.io"]
       }

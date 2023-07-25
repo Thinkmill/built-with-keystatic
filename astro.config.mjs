@@ -11,6 +11,6 @@ export default defineConfig({
   experimental: {
     assets: true,
   },
-  site: "https://builtwith.keystatic.com",
+  site: "https://keystatic.com/showcase",
   adapter: vercel(),
 });
