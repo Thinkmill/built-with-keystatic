@@ -19,13 +19,13 @@ const sortedProjects = projects.sort((a, b) => {
         Built with Keystatic
       </h1>
       <p class="mt-2 md:mt-4 text-slate-600 md:text-lg">
-        A collection of projects using Keystatic to manage parts of their
+        A collection of projects using <a href="https://keystatic.com" class="underline hover:no-underline" target="_blank">Keystatic</a> to manage parts of their
         codebase.
       </p>
     </div>
 
     <ul
-      class="py-8 sm:py-12 gap-x-6 gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
+      class="py-8 sm:py-12 gap-x-6 gap-y-16 sm:gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
         sortedProjects.map(async ({ data }, index) => {
