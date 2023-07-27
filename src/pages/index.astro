@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { getImage } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
 
 const projects = await getCollection("projects");
 const sortedProjects = projects.sort((a, b) => {
@@ -14,12 +15,22 @@ const sortedProjects = projects.sort((a, b) => {
   <div
     class="mt-12 md:mt-16 lg:mt-20 xl:mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
   >
-    <div class="text-center max-w-md mx-auto">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">
-        Built with Keystatic
+    <div class="text-center max-w-md mx-auto flex flex-col gap-2 items-center">
+      <h1
+        class="uppercase font-semibold tracking-widest text-xs text-slate-500"
+      >
+        <span>Built with</span>
+        <a
+          href="https://keystatic.com"
+          target="_blank"
+          class="mt-2 block group"
+        >
+          <span class="sr-only">Keystatic</span>
+          <Logo class="h-6 text-black" />
+        </a>
       </h1>
       <p class="mt-2 md:mt-4 text-slate-600 md:text-lg">
-        A collection of projects using <a href="https://keystatic.com" class="underline hover:no-underline" target="_blank">Keystatic</a> to manage parts of their
+        A collection of projects using Keystatic to manage parts of their
         codebase.
       </p>
     </div>
