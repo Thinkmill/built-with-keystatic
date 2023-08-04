@@ -4,6 +4,7 @@ import { getImage } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
+import ActionButtons from "../components/ActionButtons.astro";
 
 const projects = await getCollection("projects");
 const sortedProjects = projects.sort((a, b) => {
@@ -36,17 +37,17 @@ const sortedProjects = projects.sort((a, b) => {
     </div>
 
     <ul
-      class="py-8 sm:py-12 gap-x-6 gap-y-16 sm:gap-y-10 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
+      class="py-8 sm:py-12 gap-x-6 gap-y-16 lg:py-16 grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 xl:gap-x-12 lg:gap-y-12 xl:gap-y-16"
     >
       {
-        sortedProjects.map(async ({ data }, index) => {
+        sortedProjects.map(async ({ slug, data, body }, index) => {
           const arr = [
             { width: 373, height: 231 },
             { width: 560, height: 348 },
             { width: 746, height: 464 },
           ].map((el) => {
             return getImage({
-              src: data.image,
+              src: data.coverImage,
               format: "webp",
               width: el.width,
               quality: 100,
@@ -55,7 +56,7 @@ const sortedProjects = projects.sort((a, b) => {
           });
           const [low, medium, high] = await Promise.all(arr);
           return (
-            <li class="relative group">
+            <li>
               <div class="aspect-[16/10] relative">
                 <img
                   srcset={`${low.src},
@@ -109,15 +110,10 @@ const sortedProjects = projects.sort((a, b) => {
                   </span>
                 )}
               </div>
-              <p class="mt-1 text-slate-600">{data.description}</p>
-              <a
-                href={data.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="absolute inset-0"
-              >
-                <span class="sr-only">View {data.title} project</span>
-              </a>
+              <p class="mt-1 text-slate-600">{data.summary}</p>
+              <div class="mt-4 flex gap-2 items-center flex-wrap">
+                <ActionButtons data={data} slug={slug} body={body} />
+              </div>
             </li>
           );
         })

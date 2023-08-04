@@ -1,0 +1,70 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+import Layout from "../layouts/Layout.astro";
+import ActionButtons from "../components/ActionButtons.astro";
+
+const { slug } = Astro.params;
+if (!slug) throw new Error("Missing slug param");
+
+const project = await getEntry("projects", slug);
+if (!project) throw new Error(`Project not found: ${slug}`);
+
+const { data } = project;
+
+// Get the <Content /> rich text component
+const { Content } = await project.render();
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+  }));
+}
+---
+
+<Layout title={`${data.title} | Built With Keystatic`}>
+  <div class="relative">
+    <header
+      class="pb-12 pt-16 md:py-16 lg:pt-20 xl:pt-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+    >
+      <a
+        href="/"
+        class="absolute top-4 left-4 text-sm underline hover:no-underline"
+        >&larr; All projects</a
+      >
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">
+        {data.title}
+      </h1>
+      <div
+        class="mt-8 lg:mt-12 aspect-[16/10] relative max-w-lg mx-auto w-full"
+      >
+        <Image
+          src={data.coverImage}
+          alt=""
+          class="rounded-lg absolute inset-0 object-cover"
+          width={373 * 3}
+          height={232 * 3}
+          loading="eager"
+        />
+      </div>
+      <p class="mt-6 text-slate-600 md:text-lg max-w-xl mx-auto">
+        {data.summary}
+      </p>
+      <div class="mt-8 flex items-center justify-center gap-2 flex-wrap">
+        <ActionButtons data={data} slug={slug} />
+      </div>
+    </header>
+
+    {
+      project.body && (
+        <main class="bg-white py-12">
+          <div class="mx-auto px-4 sm:px-6 lg:px-8 prose lg:prose-lg">
+            <Content />
+          </div>
+        </main>
+      )
+    }
+  </div>
+</Layout>
