@@ -22,13 +22,13 @@ export default config({
           defaultValue: "demo",
         }),
         url: fields.url({ label: "URL" }),
-        summary: fields.text({
-          label: "Summary",
+        description: fields.text({
+          label: "Description",
           multiline: true,
           description: "This will be used on the homepage listing.",
         }),
-        coverImage: fields.image({
-          label: "Cover image",
+        image: fields.image({
+          label: "Image",
           validation: { isRequired: true },
           directory: "src/assets/projects",
           publicPath: "../../assets/projects",
