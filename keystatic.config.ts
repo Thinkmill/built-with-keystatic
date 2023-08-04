@@ -12,6 +12,14 @@ export default config({
       format: { contentField: "empty" },
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
+        type: fields.select({
+          label: "Type",
+          options: [
+            { label: "Production", value: "production" },
+            { label: "Demo", value: "demo" },
+          ],
+          defaultValue: "demo",
+        }),
         url: fields.url({ label: "URL" }),
         description: fields.text({ label: "Description", multiline: true }),
         empty: fields.emptyDocument(),
