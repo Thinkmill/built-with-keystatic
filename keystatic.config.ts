@@ -13,6 +13,14 @@ export default config({
       entryLayout: "content",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
+        type: fields.select({
+          label: "Type",
+          options: [
+            { label: "Production", value: "production" },
+            { label: "Demo", value: "demo" },
+          ],
+          defaultValue: "demo",
+        }),
         url: fields.url({ label: "URL" }),
         summary: fields.text({
           label: "Summary",
