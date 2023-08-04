@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import { Image } from "astro:assets";
 
 import Layout from "../layouts/Layout.astro";
+import ActionButtons from "../components/ActionButtons.astro";
 
 const { slug } = Astro.params;
 if (!slug) throw new Error("Missing slug param");
@@ -51,21 +52,19 @@ export async function getStaticPaths() {
       <p class="mt-6 text-slate-600 md:text-lg max-w-xl mx-auto">
         {data.summary}
       </p>
-      <div class="mt-8">
-        <a
-          href={data.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-6 py-3 bg-slate-900 text-slate-50 font-medium rounded hover:bg-slate-700"
-          >Visit website</a
-        >
+      <div class="mt-8 flex items-center justify-center gap-2 flex-wrap">
+        <ActionButtons data={data} slug={slug} />
       </div>
     </header>
 
-    <main class="bg-white py-12">
-      <div class="mx-auto px-4 sm:px-6 lg:px-8 prose lg:prose-lg">
-        <Content />
-      </div>
-    </main>
+    {
+      project.body && (
+        <main class="bg-white py-12">
+          <div class="mx-auto px-4 sm:px-6 lg:px-8 prose lg:prose-lg">
+            <Content />
+          </div>
+        </main>
+      )
+    }
   </div>
 </Layout>

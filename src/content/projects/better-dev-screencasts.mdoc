@@ -2,62 +2,10 @@
 title: Better Dev Screencasts
 type: production
 url: https://betterdevscreencasts.com
+repoUrl: https://github.com/simonswiss/better-dev
 summary: >-
   A collection of resources to help developers create better screencasts, and
   level-up their overall video content creation game.
 coverImage: ../../assets/projects/better-dev-screencasts/coverImage.png
 sortIndex: 50
 ---
-This is the long form copy for the Better Dev Screencasts.
-
-The project is used like so:
-
-```typescript
-import { config, fields, collection } from "@keystatic/core";
-
-export default config({
-  storage: {
-    kind: "local",
-  },
-  collections: {
-    projects: collection({
-      label: "Projects",
-      slugField: "title",
-      path: "src/content/projects/*",
-      format: { contentField: "content" },
-      entryLayout: "content",
-      schema: {
-        title: fields.slug({ name: { label: "Title" } }),
-        url: fields.url({ label: "URL" }),
-        summary: fields.text({
-          label: "Summary",
-          multiline: true,
-          description: "This will be used on the homepage listing.",
-        }),
-        coverImage: fields.image({
-          label: "Cover image",
-          validation: { isRequired: true },
-          directory: "src/assets/projects",
-          publicPath: "../../assets/projects",
-        }),
-        sortIndex: fields.integer({ label: "Sort Index", defaultValue: 100 }),
-        content: fields.document({
-          label: "Content",
-          description: "The long form copy for the project page.",
-          formatting: true,
-          links: true,
-          images: true,
-        }),
-      },
-    }),
-  },
-});
-```
-
-As you can see, this is a pretty neat implementation!
-
-I really like it — I think it's a lot of fun.
-
-![Example of the Admin UI](../../assets/projects/better-dev-screencasts/dummy-image.png)
-
-Let's see how we can render this on the front end and then style it!

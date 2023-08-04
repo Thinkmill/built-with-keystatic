@@ -22,13 +22,18 @@ export default config({
           defaultValue: "demo",
         }),
         url: fields.url({ label: "URL" }),
-        description: fields.text({
-          label: "Description",
+        repoUrl: fields.url({
+          label: "Repo URL",
+          description:
+            "Fill this only for pulic repos, where it makes sense to share.",
+        }),
+        summary: fields.text({
+          label: "Summary",
           multiline: true,
           description: "This will be used on the homepage listing.",
         }),
-        image: fields.image({
-          label: "Image",
+        coverImage: fields.image({
+          label: "Cover image",
           validation: { isRequired: true },
           directory: "src/assets/projects",
           publicPath: "../../assets/projects",
@@ -36,7 +41,8 @@ export default config({
         sortIndex: fields.integer({ label: "Sort Index", defaultValue: 100 }),
         content: fields.document({
           label: "Content",
-          description: "The long form copy for the project page.",
+          description:
+            "The long form copy for the project page. A link to a dedicated page will be available if this field is filled.",
           formatting: true,
           links: true,
           images: {
