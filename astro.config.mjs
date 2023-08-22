@@ -10,6 +10,7 @@ export default defineConfig({
   output: "hybrid",
   experimental: {
     assets: true,
+    viewTransitions: true,
   },
   site: "https://keystatic.com/showcase",
   adapter: vercel(),
