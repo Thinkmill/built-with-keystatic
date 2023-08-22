@@ -34,7 +34,10 @@ export async function getStaticPaths() {
         class="absolute top-4 left-4 text-sm underline hover:no-underline"
         >&larr; All projects</a
       >
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-extrabold"
+        transition:name={`title-${slug}`}
+      >
         {data.title}
       </h1>
       <div
@@ -47,9 +50,13 @@ export async function getStaticPaths() {
           width={373 * 3}
           height={232 * 3}
           loading="eager"
+          transition:name={`image-${slug}`}
         />
       </div>
-      <p class="mt-6 text-slate-600 md:text-lg max-w-xl mx-auto">
+      <p
+        class="mt-6 text-slate-600 md:text-lg max-w-xl mx-auto"
+        transition:name={`summary-${slug}`}
+      >
         {data.summary}
       </p>
       <div class="mt-8 flex items-center justify-center gap-2 flex-wrap">

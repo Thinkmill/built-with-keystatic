@@ -59,6 +59,7 @@ const sortedProjects = projects.sort((a, b) => {
             <li>
               <div class="aspect-[16/10] relative">
                 <img
+                  transition:name={`image-${slug}`}
                   srcset={`${low.src},
                ${medium.src} 1.5x,
                ${high.src} 2x`}
@@ -69,7 +70,10 @@ const sortedProjects = projects.sort((a, b) => {
                 />
               </div>
               <div class="mt-4 flex flex-wrap gap-x-2 gap-y-1 items-center">
-                <h2 class="xl:text-lg font-semibold group-hover:underline">
+                <h2
+                  class="xl:text-lg font-semibold group-hover:underline"
+                  transition:name={`title-${slug}`}
+                >
                   {data.title}
                 </h2>
                 {data.type === "production" ? (
@@ -110,7 +114,12 @@ const sortedProjects = projects.sort((a, b) => {
                   </span>
                 )}
               </div>
-              <p class="mt-1 text-slate-600">{data.summary}</p>
+              <p
+                class="mt-1 text-slate-600"
+                transition:name={`summary-${slug}`}
+              >
+                {data.summary}
+              </p>
               <div class="mt-4 flex gap-2 items-center flex-wrap">
                 <ActionButtons data={data} slug={slug} body={body} />
               </div>

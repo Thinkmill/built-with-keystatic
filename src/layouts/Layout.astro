@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 import "../styles/tailwind.css";
 import SeoTags from "../components/SeoTags.astro";
 import Footer from "../components/Footer.astro";
@@ -19,6 +21,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="canonical" href="https://keystatic.com/showcase" />
+    <ViewTransitions />
     <SeoTags />
   </head>
   <body class="flex flex-col min-h-screen">

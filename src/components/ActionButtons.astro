@@ -27,6 +27,7 @@ const { data, slug, body } = Astro.props as ActionButtonProps;
   target="_blank"
   rel="noopener noreferrer"
   class="bg-slate-200 hover:bg-slate-200/50 text-slate-800 px-3 py-1.5 font-semibold rounded text-sm"
+  transition:name={`view-button-${slug}`}
 >
   {data.type === "production" ? "Visit website" : "View demo site"}
 </a>
@@ -37,6 +38,7 @@ const { data, slug, body } = Astro.props as ActionButtonProps;
       target="_blank"
       rel="noopener noreferrer"
       class="bg-white text-slate-800 px-3 py-1.5 font-semibold rounded text-sm flex gap-2 items-center hover:bg-slate-50"
+      transition:name={`repo-button-${slug}`}
     >
       <svg
         class="h-4 w-4"
