@@ -34,7 +34,7 @@ export async function getStaticPaths() {
           See https://github.com/Thinkmill/keystatic/blob/main/docs/vercel.json#L4-L7 */
       }
       <a
-        href={import.meta.env.MODE === "development" ? "/" : "/showcase"}
+        href={import.meta.env.MODE === "production" ? "/showcase" : "/"}
         class="absolute top-4 left-4 text-sm underline hover:no-underline"
         >&larr; All projects</a
       >
