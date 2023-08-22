@@ -29,8 +29,12 @@ export async function getStaticPaths() {
     <header
       class="pb-12 pt-16 md:py-16 lg:pt-20 xl:pt-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
     >
+      {
+        /* In prod, the "root" URL is `/showcase`
+          See https://github.com/Thinkmill/keystatic/blob/main/docs/vercel.json#L4-L7 */
+      }
       <a
-        href="/"
+        href={import.meta.env.MODE === "production" ? "/showcase" : "/"}
         class="absolute top-4 left-4 text-sm underline hover:no-underline"
         >&larr; All projects</a
       >
