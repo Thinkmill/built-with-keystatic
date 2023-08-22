@@ -16,7 +16,5 @@ export default defineConfig({
   adapter: vercel(),
   build: {
     assets: "_uses_assets",
-    assetsPrefix: "https://keystatic.com/showcase",
   },
-  base: "/showcase/",
 });
