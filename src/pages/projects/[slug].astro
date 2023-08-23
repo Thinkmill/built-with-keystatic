@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 
 import Layout from "../../layouts/Layout.astro";
 import ActionButtons from "../../components/ActionButtons.astro";
+import Badge from "../../components/Badge.astro";
 
 const { slug } = Astro.params;
 if (!slug) throw new Error("Missing slug param");
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
 <Layout title={`${data.title} | Built With Keystatic`}>
   <div class="relative">
     <header
-      class="pb-12 pt-16 md:py-16 lg:pt-20 xl:pt-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      class="pb-12 pt-16 md:py-16 lg:pt-20 xl:pt-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 lg:space-y-8"
     >
       {
         /* In prod, the "root" URL is `/showcase`
@@ -41,29 +42,30 @@ export async function getStaticPaths() {
       <h1
         class="text-3xl sm:text-4xl md:text-5xl font-extrabold"
         transition:name={`title-${slug}`}
-      >
+        >
         {data.title}
       </h1>
-      <div
-        class="mt-8 lg:mt-12 aspect-[16/10] relative max-w-lg mx-auto w-full"
-      >
-        <Image
-          src={data.coverImage}
-          alt=""
-          class="rounded-lg absolute inset-0 object-cover"
-          width={373 * 3}
-          height={232 * 3}
-          loading="eager"
-          transition:name={`image-${slug}`}
-        />
+      <div class="bg-black/[0.03] p-4 rounded-md max-w-lg mx-auto w-full mt-6 lg:mt-8">
+        <div class="aspect-[16/10] relative">
+          <Image
+            src={data.coverImage}
+            alt=""
+            class="rounded-md absolute inset-0 object-cover shadow-lg"
+            width={373 * 3}
+            height={232 * 3}
+            loading="eager"
+            transition:name={`image-${slug}`}
+          />
+        </div>
       </div>
+      <Badge type={data.type} transition:name={`badge-${slug}`} />
       <p
-        class="mt-6 text-slate-600 md:text-lg max-w-xl mx-auto"
+        class="text-slate-600 md:text-lg max-w-xl mx-auto"
         transition:name={`summary-${slug}`}
       >
         {data.summary}
       </p>
-      <div class="mt-8 flex items-center justify-center gap-2 flex-wrap">
+      <div class="flex items-center justify-center gap-2 flex-wrap">
         <ActionButtons data={data} slug={slug} />
       </div>
     </header>
