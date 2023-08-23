@@ -1,15 +1,80 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import { SEO } from 'astro-seo'
 
-import "../styles/tailwind.css";
-import SeoTags from "../components/SeoTags.astro";
 import Footer from "../components/Footer.astro";
 
-export interface Props {
-  title: string;
+import defaultImage from "~/assets/seo-image.png";
+import "../styles/tailwind.css";
+
+
+type Props = {
+  title: string
+  description?: string
+  canonical?: string
+  seoImage?: string
+  noindex?: boolean
+  nofollow?: boolean
+  footerCTAText?: string
+  footerButtonCTAText?: string
+  noFooterCTA?: boolean
+  og?: {
+    title?: string
+    description?: string
+    type?: string
+    image?: string
+    imageAlt?: string
+    url?: string
+  }
+  twitter?: {
+    title?: string
+    description?: string
+    image?: string
+    site?: string
+    creator?: string
+    card?: 'summary' | 'summary_large_image'
+  }
 }
 
-const { title } = Astro.props;
+// SEO Default values
+const {
+  title: titleProp,
+  description = 'A collection of projects using Keystatic to manage parts of their codebase.',
+  canonical = 'https://keystatic.com/showcase',
+  seoImage = defaultImage.src,
+  og: ogProps,
+  twitter: twitterProps,
+  noindex = false,
+  nofollow = false,
+  footerCTAText,
+  footerButtonCTAText,
+  noFooterCTA = false,
+} = Astro.props as Props
+
+const siteUrl = Astro?.site?.origin || 'https://keystatic.com/showcase'
+
+const title = [titleProp, 'Built with Keystatic'].filter(Boolean).join(' | ')
+
+// Merging OG and Twitter props with default values
+const og = {
+  title: title + ' ',
+  description: description + ' ',
+  type: 'website',
+  image: siteUrl + seoImage,
+  imageAlt: title,
+  url: canonical,
+  ...(ogProps || {}),
+}
+
+const twitter = {
+  title,
+  description,
+  image: siteUrl + seoImage,
+  site: '@thekeystatic',
+  creator: '@thekeystatic',
+  card: 'summary_large_image' as const,
+  ...(twitterProps || {}),
+}
 ---
 
 <!DOCTYPE html>
@@ -19,10 +84,42 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/_uses_assets/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <link rel="canonical" href="https://keystatic.com/showcase" />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      nofollow={nofollow}
+      openGraph={{
+        basic: {
+          title: og.title,
+          type: og.type,
+          image: og.image,
+          url: og.url,
+        },
+        optional: {
+          description: og.description,
+        },
+        image: {
+          width: 1200,
+          height: 1200,
+          alt: og.imageAlt,
+        },
+      }}
+      twitter={{
+        card: twitter.card,
+        site: twitter.site,
+        creator: twitter.creator,
+      }}
+      extend={{
+        meta: [
+          { name: 'twitter:title', content: twitter.title },
+          { name: 'twitter:description', content: twitter.description },
+          { name: 'twitter:image', content: twitter.image },
+        ],
+      }}
+    />
     <ViewTransitions />
-    <SeoTags />
   </head>
   <body class="flex flex-col min-h-screen">
     <div class="flex-1">
